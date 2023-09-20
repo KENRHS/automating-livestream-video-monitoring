@@ -125,6 +125,53 @@ Resources:
                 Action:
                   - 'sns:Publish'
                 Resource: '*'
+  MFALambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName:
+        Fn::If:
+          - ShouldNotCreateEnvResources
+          - corecocf3573d0_totp_lambda_role
+          - Fn::Join:
+              - ''
+              - - corecocf3573d0_totp_lambda_role
+                - '-'
+                - Ref: env
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Policies:
+        - PolicyName: corecocf3573d0_totp_pass_role_policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource:
+                  Fn::If:
+                    - ShouldNotCreateEnvResources
+                    - arn:aws:iam:::role/corecocf3573d0_totp_lambda_role
+                    - Fn::Join:
+                        - ''
+                        - - arn:aws:iam:::role/corecocf3573d0_totp_lambda_role
+                          - '-'
+                          - Ref: env
+          # New policy
+        - PolicyName: corecocf3573d0_sns_pass_role_policy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - 'iam:PassRole'
+                Resource: !GetAtt SNSRole.Arn
   # BEGIN USER POOL RESOURCES
   UserPool:
     # Created upon user selection
