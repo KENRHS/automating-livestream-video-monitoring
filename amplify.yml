@@ -24,7 +24,7 @@ applications:
         preBuild:
           commands:
             - cat src/aws-exports.js
-            - npm install
+            - npm install --legacy-peer-deps
             - npm ci
         build:
           commands:
