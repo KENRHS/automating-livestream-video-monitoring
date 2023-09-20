@@ -272,8 +272,8 @@ Resources:
         ZipFile: !Join
           - |+
           - - "const response = require('cfn-response');"
-            - "const aws = require('aws-sdk');"
-            - 'const identity = new aws.CognitoIdentityServiceProvider();'
+            - "const { CognitoIdentityProvider: CognitoIdentityServiceProvider } = require('@aws-sdk/client-cognito-identity-provider');"
+            - 'const identity = new CognitoIdentityServiceProvider();'
             - 'exports.handler = (event, context, callback) => {'
             - " if (event.RequestType == 'Delete') { "
             - '   response.send(event, context, response.SUCCESS, {})'
