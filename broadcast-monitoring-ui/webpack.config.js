@@ -4,6 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 module.exports = {
+  experiments: { topLevelAwait: true, },
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
