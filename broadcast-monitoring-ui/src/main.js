@@ -26,7 +26,7 @@ const appSyncConfig = {
   auth: {
     type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
     //jwtToken: (await Auth.currentSession()).getAccessToken().getJwtToken()
-    jwtToken: 
+    jwtToken: ""
   }
 }
 const options = {
