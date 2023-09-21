@@ -20,6 +20,8 @@ if (awsconfig['aws_user_files_s3_bucket_region'] !== undefined) {
   delete awsconfig['aws_user_files_s3_bucket_region']
 }
 
+let A = await Auth.currentSession();
+
 const appSyncConfig = {
   url: awsconfig.aws_appsync_graphqlEndpoint,
   region: awsconfig.aws_appsync_region,
