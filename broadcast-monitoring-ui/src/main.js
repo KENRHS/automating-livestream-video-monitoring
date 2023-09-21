@@ -25,7 +25,8 @@ const appSyncConfig = {
   region: awsconfig.aws_appsync_region,
   auth: {
     type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
-    jwtToken: (await Auth.currentSession()).getAccessToken().getJwtToken()
+    //jwtToken: (await Auth.currentSession()).getAccessToken().getJwtToken()
+    jwtToken: 
   }
 }
 const options = {
