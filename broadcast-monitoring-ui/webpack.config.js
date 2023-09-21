@@ -5,7 +5,6 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
-  experiments: { topLevelAwait: true, },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -57,11 +56,6 @@ module.exports = {
           }
           // other vue-loader options go here
         }
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
