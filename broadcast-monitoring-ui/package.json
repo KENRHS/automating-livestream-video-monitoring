@@ -34,7 +34,7 @@
     "pretty-quick": "^2.0.1",
     "video.js": "^7.6.6",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "5.88.2",
+    "webpack": "5.88.2"
   },
   "husky": {
     "hooks": {
