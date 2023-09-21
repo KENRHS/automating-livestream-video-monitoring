@@ -57,7 +57,10 @@ Amplify.configure(s3_config)
 
 Vue.use(Buefy)
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
+
+console.log(awsconfig.aws_appsync_graphqlEndpoint);
+console.log(awsconfig.aws_appsync_region);
 
 new Vue({
   render: h => h(App),
