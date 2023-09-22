@@ -86,7 +86,7 @@ type VideoFragmentsPage @aws_cognito_user_pools {
   nextToken: String
 }
 
-input newSegmentSummaryReadyInput @aws_cognito_user_pools {
+input newSegmentSummaryReadyInput {
   Stream_ID: String!
   Start_DateTime: AWSDateTime!
   Duration_Sec: Float!
