@@ -7,13 +7,18 @@ Amplify Params - DO NOT EDIT */
 
 /* eslint-disable */
 
-const AWS = require('aws-sdk')
+const {
+        DynamoDBDocument
+      } = require("@aws-sdk/lib-dynamodb"),
+      {
+        DynamoDB
+      } = require("@aws-sdk/client-dynamodb");
 const util = require('util')
 const moment = require('moment')
 
 const segments_table = process.env.SEGMENT_TABLE
 const frame_table = process.env.FRAME_TABLE
-const documentClient = new AWS.DynamoDB.DocumentClient({ region: process.env.AWS_REGION })
+const documentClient = DynamoDBDocument.from(new DynamoDB({ region: process.env.AWS_REGION }))
 
 function parseAudioCheckResult(segmentItem) {
   let audioResult = {}
@@ -135,7 +140,7 @@ const resolvers = {
       }
 
       try {
-        let segmentsTableEntry = await documentClient.query(segmentTableParams).promise()
+        let segmentsTableEntry = await documentClient.query(segmentTableParams)
         console.log(`query segment table got ${segmentsTableEntry.Count} results.`)
         let segmentItem = segmentsTableEntry.Items[0]
         let startDateTimeStr = segmentItem.Start_DateTime
@@ -157,7 +162,7 @@ const resolvers = {
           }
         }
 
-        let frameTableResults = await documentClient.query(frameTableParams).promise()
+        let frameTableResults = await documentClient.query(frameTableParams)
         console.log(`query segment table got ${frameTableResults.Count} results.`)
         let frames = []
         frameTableResults.Items.forEach(frameResults => {
