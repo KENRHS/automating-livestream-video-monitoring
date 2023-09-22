@@ -20,15 +20,14 @@ if (awsconfig['aws_user_files_s3_bucket_region'] !== undefined) {
   delete awsconfig['aws_user_files_s3_bucket_region']
 }
 
-let A = await Auth.currentSession();
+Amplify.configure(awsconfig)
 
 const appSyncConfig = {
   url: awsconfig.aws_appsync_graphqlEndpoint,
   region: awsconfig.aws_appsync_region,
   auth: {
     type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
-    //jwtToken: (await Auth.currentSession()).getAccessToken().getJwtToken()
-    jwtToken: ""
+    jwtToken: (await Auth.currentSession()).getAccessToken().getJwtToken()
   }
 }
 const options = {
@@ -44,8 +43,6 @@ const appsyncProvider = new VueApollo({
   defaultClient: appSyncClient
 })
 Vue.use(VueApollo)
-
-Amplify.configure(awsconfig)
 
 const s3_config = {
   Storage: {
