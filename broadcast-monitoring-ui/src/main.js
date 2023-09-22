@@ -13,12 +13,14 @@ import store from './store/store'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+/*
 if (awsconfig['aws_user_files_s3_bucket'] !== undefined) {
   delete awsconfig['aws_user_files_s3_bucket']
 }
 if (awsconfig['aws_user_files_s3_bucket_region'] !== undefined) {
   delete awsconfig['aws_user_files_s3_bucket_region']
 }
+*/
 
 Amplify.configure(awsconfig)
 
@@ -43,7 +45,7 @@ const appsyncProvider = new VueApollo({
   defaultClient: appSyncClient
 })
 Vue.use(VueApollo)
-
+/*
 const s3_config = {
   Storage: {
     AWSS3: {
@@ -54,7 +56,7 @@ const s3_config = {
   }
 }
 Amplify.configure(s3_config)
-
+*/
 Vue.use(Buefy)
 
 Vue.config.productionTip = true
