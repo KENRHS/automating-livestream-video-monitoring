@@ -30,12 +30,12 @@
     "expressionNames":  $utils.toJson($queryExpressionNames),
     "expressionValues": $utils.toJson($queryExpressionValues),
   },
-  "filter" : {
-      "expression" : "attribute_exists(#f)",
-      "expressionNames" : {
-          "#f" : "Finished"
-      }
-  },
+  ##"filter" : {
+  ##    "expression" : "attribute_exists(#f)",
+  ##    "expressionNames" : {
+  ##        "#f" : "Finished"
+  ##    }
+  ##},
   "limit": $util.defaultIfNull($ctx.args.limit, 20),
   "nextToken": $util.toJson($util.defaultIfNullOrEmpty($ctx.args.nextToken, null)),
   "scanIndexForward": false,
