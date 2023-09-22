@@ -1,6 +1,4 @@
-{ allow: public }
-
-type NewSegmentSummary {
+type NewSegmentSummary @aws_cognito_user_pools {
   Stream_ID: String!
   Start_DateTime: AWSDateTime!
   Duration_Sec: Float!
@@ -12,7 +10,7 @@ type NewSegmentSummary {
   Thumbnail_Key: String
 }
 
-type SegmentSummary {
+type SegmentSummary @aws_cognito_user_pools {
   Stream_ID: String!
   Start_DateTime: AWSDateTime!
   Duration_Sec: Float!
@@ -24,7 +22,7 @@ type SegmentSummary {
   Thumbnail_Key: String
 }
 
-type SegmentDetail {
+type SegmentDetail @aws_cognito_user_pools {
   Stream_ID: String!
   Start_DateTime: AWSDateTime!
   End_DateTime: AWSDateTime!
@@ -34,21 +32,21 @@ type SegmentDetail {
   Frames: [FrameDetail]
 }
 
-type AudioCheckDetail {
+type AudioCheckDetail @aws_cognito_user_pools {
   Audio_Status: Boolean
   Silence_Duration: Float
   Mean_DB: Float
   Confidence: Float
 }
 
-type SportsCheckDetail {
+type SportsCheckDetail @aws_cognito_user_pools {
   Status: Boolean
   Expected_Sports: String
   Detected_Sports: String
   Confidence: Float
 }
 
-type LogoCheckDetail {
+type LogoCheckDetail @aws_cognito_user_pools {
   Status: Boolean
   Expected_Logo: String
   Detected_Logo: String
@@ -57,7 +55,7 @@ type LogoCheckDetail {
   Error: String
 }
 
-type TeamCheckDetail {
+type TeamCheckDetail @aws_cognito_user_pools {
   Status: Boolean
   Team1_Expected: String
   Team1_Detected_Text: String
@@ -73,7 +71,7 @@ type TeamCheckDetail {
   Detected_Teams: [String]
 }
 
-type FrameDetail {
+type FrameDetail @aws_cognito_user_pools {
   DateTime: AWSDateTime!
   S3_Key: String!
   Resized_S3_Key: String
@@ -83,12 +81,12 @@ type FrameDetail {
   issueDetected: Boolean
 }
 
-type VideoFragmentsPage {
+type VideoFragmentsPage @aws_cognito_user_pools {
   items: [SegmentSummary]
   nextToken: String
 }
 
-input newSegmentSummaryReadyInput {
+input newSegmentSummaryReadyInput @aws_cognito_user_pools {
   Stream_ID: String!
   Start_DateTime: AWSDateTime!
   Duration_Sec: Float!
@@ -100,7 +98,7 @@ input newSegmentSummaryReadyInput {
   Thumbnail_Key: String
 }
 
-type Query {
+type Query @aws_cognito_user_pools {
   listSegmentSummary(
     Stream_ID: String!
     After: AWSDateTime
@@ -111,11 +109,11 @@ type Query {
     @function(name: "fetch-segment-detail-${env}")
 }
 
-type Mutation {
+type Mutation @aws_cognito_user_pools {
   newSegmentSummaryReady(input: newSegmentSummaryReadyInput!): NewSegmentSummary
 }
 
-type Subscription {
+type Subscription @aws_cognito_user_pools {
   newSegmentSummaryAdded(Stream_ID: String!): NewSegmentSummary
     @aws_subscribe(mutations: ["newSegmentSummaryReady"])
 }
