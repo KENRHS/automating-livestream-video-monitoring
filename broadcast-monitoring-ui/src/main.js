@@ -53,7 +53,8 @@ const s3_config = {
       bucket: process.env.VUE_APP_AWS_S3_BUCKET,
       region: process.env.VUE_APP_AWS_S3_REGION,
       */
-      bucket: awsconfig.aws_user_files_s3_bucket,
+      //bucket: awsconfig.aws_user_files_s3_bucket,
+      bucket: "broadcast-monitoring-458961639005-us-east-1",
       region: awsconfig.aws_user_files_s3_bucket_region,
       customPrefix: { public: '' } // without this override, amplify tries to load s3 images by prepedning "public/"
     }
