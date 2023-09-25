@@ -45,7 +45,7 @@ const appsyncProvider = new VueApollo({
   defaultClient: appSyncClient
 })
 Vue.use(VueApollo)
-/*
+
 const s3_config = {
   Storage: {
     AWSS3: {
@@ -56,7 +56,7 @@ const s3_config = {
   }
 }
 Amplify.configure(s3_config)
-*/
+
 Vue.use(Buefy)
 
 Vue.config.productionTip = true
