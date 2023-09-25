@@ -25,9 +25,9 @@ Vue.use(Router)
 
 let user
 getUser().then(user => {
-  if (user) {
-    router.push({ path: '/' })
-  }
+  //if (user) {
+   // router.push({ path: '/' })
+  //}
 })
 
 onAuthUIStateChange((authState, authData) => {
