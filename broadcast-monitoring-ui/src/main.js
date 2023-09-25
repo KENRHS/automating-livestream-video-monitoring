@@ -23,13 +23,17 @@ if (awsconfig['aws_user_files_s3_bucket_region'] !== undefined) {
 */
 
 Amplify.configure(awsconfig)
+let JWTToken = "";
+
+try { JWTToken = (await Auth.currentSession()).getAccessToken().getJwtToken() }
+catch(E) {}
 
 const appSyncConfig = {
   url: awsconfig.aws_appsync_graphqlEndpoint,
   region: awsconfig.aws_appsync_region,
   auth: {
     type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
-    jwtToken: (await Auth.currentSession()).getAccessToken().getJwtToken()
+    jwtToken: JWTToken
   }
 }
 const options = {
