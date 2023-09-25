@@ -58,7 +58,7 @@ const store = new Vuex.Store({
       state.selectedFrame = selectedFrame
     },
     setShowSegmentAfter(state, showSegmentAfter) {
-      state.showSegmentAfter = showSegmentAfter
+      state.showSegmentAfter = showSegmentAfter.getTime() - (3 * 60000);
     }
   },
   getters: {
