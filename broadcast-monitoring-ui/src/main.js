@@ -49,8 +49,12 @@ Vue.use(VueApollo)
 const s3_config = {
   Storage: {
     AWSS3: {
+      /*
       bucket: process.env.VUE_APP_AWS_S3_BUCKET,
       region: process.env.VUE_APP_AWS_S3_REGION,
+      */
+      bucket: awsconfig.aws_user_files_s3_bucket,
+      region: awsconfig.aws_user_files_s3_bucket_region,
       customPrefix: { public: '' } // without this override, amplify tries to load s3 images by prepedning "public/"
     }
   }
@@ -63,6 +67,8 @@ Vue.config.productionTip = true
 
 console.log(awsconfig.aws_appsync_graphqlEndpoint);
 console.log(awsconfig.aws_appsync_region);
+console.log(awsconfig.aws_user_files_s3_bucket);
+console.log(awsconfig.aws_user_files_s3_bucket_region);
 
 new Vue({
   render: h => h(App),
